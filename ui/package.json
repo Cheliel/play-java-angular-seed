@@ -6,13 +6,14 @@
     "ng": "ng",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider ng serve --open --proxy-config src/proxy.conf.js --host 0.0.0.0",
-    "test": "set NODE_OPTIONS=--openssl-legacy-provider ng test --watch",
+    "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && ng serve --open --proxy-config src/proxy.conf.js --host 0.0.0.0 --disable-host-check --watch=true",
+    "test": "export SET NODE_OPTIONS=--openssl-legacy-provider && ng test --watch=true",
+    "build-component": "ng generate component angularJS",
     "test:ci": "ng test --watch=false --browsers ChromeHeadless",
     "test:coverage": "ng test --watch=true --code-coverage=true",
     "test:coverage:ci": "ng test --watch=false --code-coverage=true --browsers ChromeHeadless",
-    "build:dev": "ng build --progress --output-path ../public",
-    "build:prod": "ng build --progress --prod --output-path ../public"
+    "build:dev": "export SET NODE_OPTIONS=--openssl-legacy-provider && ng build --progress --output-path ../public",
+    "build:prod": "export SET NODE_OPTIONS=--openssl-legacy-provider && ng build --progress --prod --output-path ../public"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,9 @@
     "@angular/platform-browser": "~8.2.10",
     "@angular/platform-browser-dynamic": "~8.2.10",
     "@angular/router": "~8.2.10",
+    "@angular/upgrade": "~8.0.0",
+    "angular": "^1.8.3",
+    "angular-bootstrap": "^0.12.2",
     "core-js": "^3.1.4",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",

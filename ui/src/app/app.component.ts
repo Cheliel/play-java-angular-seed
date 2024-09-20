@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 import { AppService } from './app.service';
 
@@ -11,7 +11,8 @@ export class AppComponent {
   title: string;
   postRequestResponse: string;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, @Inject("$injector") $injector) {
+    $injector.get('demoservice').sayHi();
     this.appService.getWelcomeMessage().subscribe((data: any) => {
       this.title = data.content;
     });
