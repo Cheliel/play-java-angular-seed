@@ -8,6 +8,7 @@ const angularJS_app = angularJSModule.component("angular-js-component", {
 });
 
 // https://docs.angular.lat/api/upgrade/static/UpgradeComponent
+// https://www.monterail.com/blog/angularjs-vs-angular-migration
 
 function angularJSCtrl($timeout){
 

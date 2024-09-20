@@ -6,5 +6,5 @@ class DemoService{
     }
 }
 
-var angularJSModule = angular.module('app-angular-js', ['core']).service('demoservice', DemoService);
+var angularJSModule = angular.module('app-angular-js', []).service('demoservice', DemoService);
 export default angularJSModule;
