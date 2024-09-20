@@ -7,6 +7,8 @@ const angularJS_app = angularJSModule.component("angular-js-component", {
     controllerAs: 'AngularJSctrl'
 });
 
+// https://docs.angular.lat/api/upgrade/static/UpgradeComponent
+
 function angularJSCtrl($timeout){
 
     var kangularJS = this;
