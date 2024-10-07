@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, DoBootstrap, Inject, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Directive, Injector, ElementRef, NgModule, DoBootstrap, Inject, ApplicationRef, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 
@@ -10,8 +10,8 @@ import { AppService } from './app.service';
 import { AppHttpInterceptorService } from './http-interceptor.service';
 import { UpgradeComponent, UpgradeModule, downgradeModule, downgradeComponent } from '@angular/upgrade/static';
 import angular from 'angular';
-import angularJS_app from './assets/javascripts/angular-js/angular-js.component';
-import angularJSModule from './assets/javascripts/app-ng';
+//import angularJS_app from './assets/javascripts/angular-js/angular-js.component';
+//import angularJSModule from './assets/javascripts/app-ng';
 
 
 //angular.bootstrap(document.body, ['app-angular-js'], { strictDi: true });
@@ -39,11 +39,52 @@ const routes: Routes = [
   }
 ];
 
+class DemoService{
+    sayHi(){
+        console.log('hi');
+    }
+
+    sayMultiplHi(word){
+        for(let i = 0; i < 12; i++){
+            console.log(i);
+            console.log(word);
+        }
+    }
+}
+
+angular.module('app-angular-js', [])
+  .service('demoservice', DemoService)
+  .component('angularJsComponent', {
+     transclude: true,
+     template:`<p>hello angularjs </p>  <app-root></app-root>`
+});
+
+@Directive({
+  selector: 'angular-js-component'
+})
+
+class angularJS_component extends UpgradeComponent {
+ /* @Input() hero: Hero;
+  @Output() deleted: EventEmitter<Hero>;*/
+
+  constructor(elementRef: ElementRef, injector: Injector) {
+    super('angularJsComponent', elementRef, injector);
+    this.sayHi()
+  }
+
+  sayHi(){
+    console.log("Hi from angularJS component")
+  }
+}
+
+
+
+
 @NgModule({
  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
    AppComponent,
-   RouteExampleComponent,
+   RouteExampleComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +109,6 @@ const routes: Routes = [
 })
 
 
-
 export class AppModule implements DoBootstrap  {
 //  constructor(private upgrade: UpgradeModule) { }
 //  ngDoBootstrap() {
@@ -78,11 +118,12 @@ export class AppModule implements DoBootstrap  {
  //   const angularInjector = $injector.get('$$angularInjector');
  //   console.log(angularInjector);
     ngDoBootstrap(app: ApplicationRef) {
-      this.upgrade.bootstrap(document.body, [angularJSModule.name], { strictDi: true });
+      this.upgrade.bootstrap(document.body, ['app-angular-js'], { strictDi: true });
       app.bootstrap(AppComponent);
     }
- 
 }
+
+
 
 //@Inject("%injector") %injector
 

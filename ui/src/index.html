@@ -7,13 +7,18 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
- <!-- <script type="text/javascript" src="app/assets/javascripts/app-ng.js"></script> -->
-  <script type="text/javascript" src="app/assets/javascripts/angular-js/angular-js.component.js"></script>
+  <script src="app/ajs-ng-app/app.module.js"></script>
+  <script src="systemjs.config.js"></script>
+  <!--<script type="text/javascript" src="app/assets/javascripts/app-ng.js"></script>-->
+  <!--<script type="text/javascript" src="app/assets/javascripts/angular-js/angular-js.component.js"></script>-->
 
 
 </head>
 <body>
-  <app-root></app-root>
+
+<angular-js-component></angular-js-component>
+
+<!--  <app-root></app-root>-->
   <div class="view-container">
     <div ng-view class="view-frame"></div>
   </div>

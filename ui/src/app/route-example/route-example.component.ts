@@ -14,4 +14,5 @@ export class RouteExampleComponent {
   constructor(route: ActivatedRoute) {
     this.tech = route.data.pipe(map(data => data.technology));
   }
+
 }

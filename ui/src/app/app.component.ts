@@ -13,6 +13,7 @@ export class AppComponent {
 
   constructor(private appService: AppService, @Inject("$injector") $injector) {
     $injector.get('demoservice').sayHi();
+    $injector.get('demoservice').sayMultiplHi("AngularJS");
     this.appService.getWelcomeMessage().subscribe((data: any) => {
       this.title = data.content;
     });
